@@ -25,7 +25,7 @@ export function getInterviewersForDay(state, day) {
       interviewersForDay.push(interviewer)
     }
   }
-  return interviewersForDay
+  return interviewersForDay;
 };
 
 export function getInterview(state, interview) {
@@ -41,4 +41,4 @@ result.student = student;
 result.interviewer = { id: interviewerId, name: interviewerName, avatar: interviewerAvatar };
 }
 return result;
-}
+};

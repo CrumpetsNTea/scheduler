@@ -26,10 +26,31 @@ export default function Application(props) {
   const parsedSchedule = dailyAppointments.map(appointment => {
   const interview = getInterview(state, appointment.interview);
   return (
-  <Appointment key={appointment.id}
-    {...appointment} interview={interview} interviewers={dailyInterviewers} />)
+  <Appointment 
+  key={appointment.id}
+    {...appointment} 
+    interview={interview} 
+    interviewers={dailyInterviewers}
+    bookInterview={bookInterview}
+    />)
   })
 
+  function bookInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };    
+    const newState = {
+      ...state,
+      appointments
+    };
+    return axios.put(`/api/appointments/${id}`, {interview})
+    .then(() => setState(newState))
+  };
 
   useEffect(() => {
     const daysURL = `/api/days`;

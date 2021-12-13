@@ -9,10 +9,7 @@ export default function useVisualMode(initial) {
       setHistory(history)
     } else {
     //pushes the latest mode to the history array
-    setHistory(() => {
-      history.push(mode)
-      return history;
-    })
+    setHistory((prev) => [...prev, mode])
   }
     //sets the current mode to the latest mode
     setMode(mode);
