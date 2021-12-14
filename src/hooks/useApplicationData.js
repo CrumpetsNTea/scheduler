@@ -65,8 +65,11 @@ function updateSpots(passedInState, id) {
   const day = passedInState.days.filter((element) =>
     element.appointments.includes(id)
   );
-  
+
   //extracts the day from within the array containing our day object as the result of the .filter above
+  //as spreading the day without doing this was causing almighty errors in the application
+  //upon setting the state with it, as it was effectively trying to set 
+  //the day to an array containing an object
   const dayNoArray = day[0];
 
   //increments spots depending on how many appointments with null interviews there are
