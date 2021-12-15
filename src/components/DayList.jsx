@@ -14,7 +14,7 @@ export default function DayList(props) {
 /*so what this does is maps over the props.days which is an array of days
 and for each element in that array it sets a key equal to the id of the day, 
 destructs the id, name, and spots, and
-gives it a setDAy which is equal to the props.setDay which is a function
+gives it a setDay which is equal to the props.setDay which is a function
 that sets the day to whatever day was clicked. It also
 gives it a selected props that calls the selected css 
 if elem.name === props.day which will effectively

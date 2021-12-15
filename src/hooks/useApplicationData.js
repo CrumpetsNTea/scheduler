@@ -8,8 +8,10 @@ const [ state, setState ] = useState({
   appointments: {},
   interviewers: {}
 });
+
 const setDay = day => setState({ ...state, day });
 
+//Gets all of our data from the server
 useEffect(() => {
   const daysURL = `/api/days`;
   const appointmentsURL = `/api/appointments`
@@ -67,7 +69,7 @@ function updateSpots(passedInState, id) {
   );
 
   //extracts the day from within the array containing our day object as the result of the .filter above
-  //as spreading the day without doing this was causing almighty errors in the application
+  //as spreading the day without doing this it was causing almighty errors in the application
   //upon setting the state with it, as it was effectively trying to set 
   //the day to an array containing an object
   const dayNoArray = day[0];

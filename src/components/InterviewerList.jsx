@@ -4,6 +4,7 @@ import InterviewerListItem from "./InterviewerListItem";
 import "components/InterviewerList.scss"
 
 export default function InterviewerList(props) {
+  //maps over the interviewers and renders individual interviewers for each
   const parsedInterviewerListItems = props.interviewers.map(interviewer => <InterviewerListItem key={interviewer.id}
   {...interviewer} setInterviewer={() => props.onChange(interviewer.id)} selected={interviewer.id === props.value}/>)
   return (

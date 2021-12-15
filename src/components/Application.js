@@ -6,8 +6,11 @@ import Appointment from "./Appointment";
 import { getAppointmentsForDay, getInterviewersForDay, getInterview } from "helpers/selectors";
 
 export default function Application(props) {
+  
+  //custom hook
   const { state, setDay, bookInterview, cancelInterview } = useApplicationData();
 
+  //Render the Appointment componenent with all necessary information as props
   const dailyInterviewers = getInterviewersForDay(state, state.day)
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const parsedSchedule = dailyAppointments.map(appointment => {
