@@ -39,6 +39,7 @@ function bookInterview(id, interview) {
     appointments
   };
   return axios.put(`/api/appointments/${id}`, {interview})
+  //call updateSpots which will set the state for us with the correct number of spots available
   .then(() => updateSpots(newState, id))
 };
 
@@ -56,15 +57,24 @@ function cancelInterview(id, interview) {
     appointments
   };
   return axios.delete(`/api/appointments/${id}`, {interview})
+    //call updateSpots which will set the state for us with the correct number of spots available
   .then(() => updateSpots(newState, id))
   
 };
 
-
-function updateSpots(passedInState, id) {
+function getSpotsForDay(newDay, appointments) {
   let spots = 0;
+  //increments spots depending on how many appointments with null interviews there are
+  newDay.appointments.forEach((id) => {if (appointments[id].interview === null) {
+    spots++
+  }});
+  return spots;
+}
+
+
+function updateSpots(newState, id) {
   //returns an array containing the day object that has the appointment
-  const day = passedInState.days.filter((element) =>
+  const day = newState.days.filter((element) =>
     element.appointments.includes(id)
   );
 
@@ -74,26 +84,21 @@ function updateSpots(passedInState, id) {
   //the day to an array containing an object
   const dayNoArray = day[0];
 
-  //increments spots depending on how many appointments with null interviews there are
-  for (const appointmentId of dayNoArray.appointments) {
-    if (passedInState.appointments[appointmentId].interview === null) {
-      spots++;  
-      }
-  }
+  const spots = getSpotsForDay(dayNoArray, newState.appointments);
 
   //spreads our new day with the updated spots into a variable
   const updatedDayWithSpots = { ...dayNoArray, spots };
 
   //grabs the index of the day that we are updating the spots of
-  const indexOfDay = passedInState.days.findIndex(day => day.name === dayNoArray.name)
+  const indexOfDay = newState.days.findIndex(day => day.name === dayNoArray.name)
    
   //assigns our new day with the updated spots to the corresponding position in the passedInState array of days
-  passedInState.days[indexOfDay] = updatedDayWithSpots;
+  newState.days[indexOfDay] = updatedDayWithSpots;
   
   //then we set the state with our new passedInState, which now contains our updated spot count for the given day
   //We then call this entire function when we want to set the state after
   //booking a new interview or deleting an interview - setting the state with the updated spots
-  setState(passedInState);
+  setState(newState);
 };
 
 
