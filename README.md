@@ -36,3 +36,14 @@ npm run storybook
 ```sh
 npm run cypress
 ```
+
+## Screenshots
+
+!["Root page upon init"](https://github.com/CrumpetsNTea/scheduler/blob/master/docs/Scheduler_init.png?raw=true)
+!["Adding new appointment"](https://github.com/CrumpetsNTea/scheduler/blob/master/docs/Creating_appointment.png?raw=true)
+!["Name input and interviewer selected"](https://github.com/CrumpetsNTea/scheduler/blob/master/docs/Name_and_Interviewer_selected.png?raw=true)
+!["Saving"](https://github.com/CrumpetsNTea/scheduler/blob/master/docs/Saving_new_interview.png?raw=true)
+!["New interview added"](https://github.com/CrumpetsNTea/scheduler/blob/master/docs/New_interview_added.png?raw=true)
+!["Confirmation upon delete"](https://github.com/CrumpetsNTea/scheduler/blob/master/docs/Confirmation_on_delete.png?raw=true)
+!["Deleting status indicator"](https://github.com/CrumpetsNTea/scheduler/blob/master/docs/Deleting.png?raw=true)
+!["Appointment Deleted"](https://github.com/CrumpetsNTea/scheduler/blob/master/docs/Deleted.png?raw=true)
