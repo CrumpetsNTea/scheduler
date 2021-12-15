@@ -17,10 +17,11 @@ it("should book an interview", () => {
 
   cy.contains(".appointment__card--show", "Lydia Miller-Jones", "Sylvia Palmer");
   
-  //The code below (as suggested in Compass) actually selects the first appointment's Sylvia Palmer, rather than checking if the new appointment 
+  //The code (as suggested in Compass) actually selects the first appointment's Sylvia Palmer, rather than checking if the new appointment 
   //has the correct interviewers name in it
   // cy.contains(".appointment__card--show", "Sylvia Palmer");
-  });
+  
+});
   it("should edit an interview", () => {
     cy.get("[alt=Edit]").first().click({force:true});
 
