@@ -60,6 +60,8 @@ export default function Appointment(props) {
     student={props.interview.student}
     interviewer={props.interview.interviewer}
     onConfirm={deleteInterview}
+    onCancel={back}
+
   />}
     {mode === CREATE && <Form interviewers={props.interviewers} onCancel={back} onSave={saveInterview} />}
     {mode === EDIT && <Form 
