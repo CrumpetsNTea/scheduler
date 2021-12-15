@@ -34,14 +34,20 @@ function bookInterview(id, interview) {
     ...state.appointments,
     [id]: appointment
   };    
-  const newState = {
-    ...state,
-    appointments
-  };
   return axios.put(`/api/appointments/${id}`, {interview})
-  //call updateSpots which will set the state for us with the correct number of spots available
-  .then(() => updateSpots(newState, id))
-};
+  .then(() => {
+    //setState with updated spots for the day that was just changed
+    setState((prev) => {
+      const days = updateSpots(prev, appointments);
+      return {
+        ...prev,
+        appointments,
+        days
+      };
+    });
+  });
+}
+
 
 function cancelInterview(id, interview) {
   const appointment = {
@@ -52,56 +58,40 @@ function cancelInterview(id, interview) {
     ...state.appointments,
     [id]: appointment
   };    
-  const newState = {
-    ...state,
-    appointments
-  };
   return axios.delete(`/api/appointments/${id}`, {interview})
-    //call updateSpots which will set the state for us with the correct number of spots available
-  .then(() => updateSpots(newState, id))
-  
+    .then(() => {
+      //setState with updated spots for the day that was just changed
+      setState((prev) => {
+        const days = updateSpots(prev, appointments);
+        return {
+          ...prev,
+          appointments,
+          days
+        };
+      });
+    });
 };
 
-function getSpotsForDay(newDay, appointments) {
+const updateSpots = (state, appointments) => {
   let spots = 0;
-  //increments spots depending on how many appointments with null interviews there are
-  newDay.appointments.forEach((id) => {if (appointments[id].interview === null) {
-    spots++
-  }});
-  return spots;
-}
-
-
-function updateSpots(newState, id) {
-  //returns an array containing the day object that has the appointment
-  const day = newState.days.filter((element) =>
-    element.appointments.includes(id)
-  );
-
-  //extracts the day from within the array containing our day object as the result of the .filter above
-  //as spreading the day without doing this it was causing almighty errors in the application
-  //upon setting the state with it, as it was effectively trying to set 
-  //the day to an array containing an object
-  const dayNoArray = day[0];
-
-  const spots = getSpotsForDay(dayNoArray, newState.appointments);
-
-  //spreads our new day with the updated spots into a variable
-  const updatedDayWithSpots = { ...dayNoArray, spots };
-
-  //grabs the index of the day that we are updating the spots of
-  const indexOfDay = newState.days.findIndex(day => day.name === dayNoArray.name)
-   
-  //assigns our new day with the updated spots to the corresponding position in the passedInState array of days
-  newState.days[indexOfDay] = updatedDayWithSpots;
+ 
+  // find the day in the days object that matches the current state.day using it's name:
+  const dayObj = state.days.find((day) => day.name === state.day);
   
-  //then we set the state with our new passedInState, which now contains our updated spot count for the given day
-  //We then call this entire function when we want to set the state after
-  //booking a new interview or deleting an interview - setting the state with the updated spots
-  setState(newState);
+  //increment spots based on how many interviews are set to null
+  dayObj.appointments.forEach((id) => {
+    if (appointments[id].interview === null) {
+      spots++;
+    }
+  });
+
+  // create a new object to hold the day with the updated spots
+  const newDay = { ...dayObj, spots };
+  //insert that updated day into the days object given to us by the state
+  const newDays = state.days.map((day) => (day.name === state.day ? newDay : day));
+  //returns the array of days objects with the updated state (tested with Gary's updateSpotsTest - does not mutate state)
+  return newDays;
 };
-
-
 
 return {state, setDay, bookInterview, cancelInterview}
 };
