@@ -75,21 +75,21 @@ function cancelInterview(id, interview) {
 const updateSpots = (state, appointments) => {
   let spots = 0;
  
-  // find the day in the days object that matches the current state.day using it's name:
+  // set object to the result of finding the day in the days object that matches the current state.day using it's name:
   const dayObj = state.days.find((day) => day.name === state.day);
   
-  //increment spots based on how many interviews are set to null
+  //increment spots based on how many interviews are set to null in our dayObj
   dayObj.appointments.forEach((id) => {
     if (appointments[id].interview === null) {
       spots++;
     }
   });
 
-  // create a new object to hold the day with the updated spots
+  // create a new object to hold the dayObj and update it with the spots count
   const newDay = { ...dayObj, spots };
-  //insert that updated day into the days object given to us by the state
+  //set new Object equal to the result of mapping the days object given to us by the state and inserting our newDay into it in replacement of the original day with the same name
   const newDays = state.days.map((day) => (day.name === state.day ? newDay : day));
-  //returns the array of days objects with the updated state (tested with Gary's updateSpotsTest - does not mutate state)
+  //returns the array of days objects with the updates spots - which we will then use when we call setState after delete and add (tested with Gary's updateSpotsTest - does not mutate state)
   return newDays;
 };
 
