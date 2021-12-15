@@ -23,5 +23,11 @@ it("should book an interview", () => {
   });
   it("should edit an interview", () => {
     cy.get("[alt=Edit]").first().click({force:true})
+    cy.get("[alt='Tori Malcolm']").click();
+    cy.get("[data-testid=student-name-input]").clear().type("Steve Rogers");
+    cy.contains("Save").click();
+
+    cy.contains(".appointment__card--show", "Steve Rogers");
+    cy.contains(".appointment__card--show", "Tori Malcolm");
   })
 });
