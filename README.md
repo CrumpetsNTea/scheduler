@@ -39,19 +39,26 @@ npm run cypress
 
 ## Screenshots
 
-Root Page on init
+Root Page on init:
 !["Root page upon init"](https://github.com/CrumpetsNTea/scheduler/blob/master/docs/Scheduler_init.png?raw=true)
-Adding a new appointment
+
+Adding a new appointment:
 !["Adding new appointment"](https://github.com/CrumpetsNTea/scheduler/blob/master/docs/Creating_appointment.png?raw=true)
-User input name and selected interviewer
+
+User input name and selected interviewer:
 !["Name input and interviewer selected"](https://github.com/CrumpetsNTea/scheduler/blob/master/docs/Name_and_Interviewer_selected.png?raw=true)
-Saving new interview status indicator
+
+Saving new interview status indicator:
 !["Saving"](https://github.com/CrumpetsNTea/scheduler/blob/master/docs/Saving_new_interview.png?raw=true)
-New interview added
+
+New interview added:
 !["New interview added"](https://github.com/CrumpetsNTea/scheduler/blob/master/docs/New_interview_added.png?raw=true)
-Confirmation when user attempts to delete interview
+
+Confirmation when user attempts to delete interview:
 !["Confirmation upon delete"](https://github.com/CrumpetsNTea/scheduler/blob/master/docs/Confirmation_on_delete.png?raw=true)
-Deleting status indicator when user confirms delete action
+
+Deleting status indicator when user confirms delete action:
 !["Deleting status indicator"](https://github.com/CrumpetsNTea/scheduler/blob/master/docs/Deleting.png?raw=true)
-Appointment is deleted
+
+Appointment is deleted:
 !["Appointment Deleted"](https://github.com/CrumpetsNTea/scheduler/blob/master/docs/Deleted.png?raw=true)
