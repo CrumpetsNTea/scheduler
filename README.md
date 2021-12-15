@@ -8,7 +8,8 @@ Interview Scheduler is a single page application built using the React framework
   - React
   - Webpack, Babel
   - Axios
-  - Storybook, Webpack Dev Server, Jest, Testing Library, Cypress
+  - Storybook, Webpack Dev Server, Jest, Testing    
+    Library, Cypress
 
 ## Setup
 
