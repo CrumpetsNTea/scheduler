@@ -91,6 +91,8 @@ function updateSpots(passedInState, id) {
   passedInState.days[indexOfDay] = updatedDayWithSpots;
   
   //then we set the state with our new passedInState, which now contains our updated spot count for the given day
+  //We then call this entire function when we want to set the state after
+  //booking a new interview or deleting an interview - setting the state with the updated spots
   setState(passedInState);
 };
 
